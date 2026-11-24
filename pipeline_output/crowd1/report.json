@@ -1,0 +1,434 @@
+{
+    "input_image": "C:\\Users\\SSD\\Desktop\\TESTING\\DBForMatching\\crowd1.jpeg",
+    "total_faces_detected": 13,
+    "accepted_faces": 8,
+    "low_confidence_faces": 5,
+    "quality_distribution": {
+        "NO": 1,
+        "SOFT": 1,
+        "STRONG": 6
+    },
+    "thresholds": {
+        "SHQS_SOFT": 75.0,
+        "SHQS_STRONG": 35.0,
+        "MATCH": 0.5
+    },
+    "faces": [
+        {
+            "face_id": 1,
+            "detector_score": 0.9995593428611755,
+            "box": [
+                390,
+                640,
+                411,
+                670
+            ],
+            "landmarks": [
+                [
+                    4.8729248046875,
+                    12.22119140625
+                ],
+                [
+                    8.523284912109375,
+                    12.57916259765625
+                ],
+                [
+                    2.622100830078125,
+                    16.73150634765625
+                ],
+                [
+                    4.19622802734375,
+                    22.24444580078125
+                ],
+                [
+                    6.799591064453125,
+                    22.28173828125
+                ]
+            ],
+            "shqs_score": 28.95,
+            "quality_factors": {
+                "S": 1.0,
+                "R": 0.289,
+                "F": 1.0,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "STRONG",
+            "weakest": "R",
+            "face_found": true,
+            "enhancement": "CodeFormer",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.0658,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 2,
+            "detector_score": 0.9994581341743469,
+            "box": [
+                248,
+                339,
+                303,
+                411
+            ],
+            "landmarks": [
+                [
+                    23.6121826171875,
+                    30.765472412109375
+                ],
+                [
+                    42.937286376953125,
+                    28.454437255859375
+                ],
+                [
+                    39.030487060546875,
+                    38.52459716796875
+                ],
+                [
+                    30.39111328125,
+                    52.688812255859375
+                ],
+                [
+                    44.764495849609375,
+                    50.99615478515625
+                ]
+            ],
+            "shqs_score": 94.57,
+            "quality_factors": {
+                "S": 0.946,
+                "R": 1.0,
+                "F": 1.0,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "NO",
+            "weakest": "S",
+            "face_found": true,
+            "enhancement": "none",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.4028,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 3,
+            "detector_score": 0.9953717589378357,
+            "box": [
+                221,
+                648,
+                251,
+                689
+            ],
+            "landmarks": [
+                [
+                    14.021011352539062,
+                    15.43536376953125
+                ],
+                [
+                    25.496078491210938,
+                    16.0982666015625
+                ],
+                [
+                    21.376693725585938,
+                    21.72857666015625
+                ],
+                [
+                    13.887771606445312,
+                    28.34814453125
+                ],
+                [
+                    23.750686645507812,
+                    28.94384765625
+                ]
+            ],
+            "shqs_score": 52.63,
+            "quality_factors": {
+                "S": 1.0,
+                "R": 0.526,
+                "F": 1.0,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "SOFT",
+            "weakest": "R",
+            "face_found": true,
+            "enhancement": "CLAHE",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.2443,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 4,
+            "detector_score": 0.9945084452629089,
+            "box": [
+                394,
+                531,
+                412,
+                555
+            ],
+            "landmarks": [
+                [
+                    9.727294921875,
+                    10.2601318359375
+                ],
+                [
+                    15.275604248046875,
+                    9.02362060546875
+                ],
+                [
+                    15.30615234375,
+                    13.0113525390625
+                ],
+                [
+                    12.04052734375,
+                    17.6632080078125
+                ],
+                [
+                    15.84295654296875,
+                    16.9320068359375
+                ]
+            ],
+            "shqs_score": 16.92,
+            "quality_factors": {
+                "S": 0.804,
+                "R": 0.211,
+                "F": 1.0,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "STRONG",
+            "weakest": "R",
+            "face_found": true,
+            "enhancement": "CodeFormer",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.0641,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 5,
+            "detector_score": 0.9885496497154236,
+            "box": [
+                511,
+                564,
+                523,
+                580
+            ],
+            "landmarks": [
+                [
+                    5.81683349609375,
+                    7.46539306640625
+                ],
+                [
+                    9.4534912109375,
+                    7.08538818359375
+                ],
+                [
+                    8.7325439453125,
+                    9.7332763671875
+                ],
+                [
+                    6.54669189453125,
+                    12.561279296875
+                ],
+                [
+                    9.38140869140625,
+                    12.38037109375
+                ]
+            ],
+            "shqs_score": 2.5,
+            "quality_factors": {
+                "S": 0.475,
+                "R": 0.053,
+                "F": 1.0,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "STRONG",
+            "weakest": "R",
+            "face_found": true,
+            "enhancement": "CodeFormer",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.1044,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 6,
+            "detector_score": 0.9790393710136414,
+            "box": [
+                674,
+                620,
+                688,
+                636
+            ],
+            "landmarks": [
+                [
+                    6.73187255859375,
+                    7.52734375
+                ],
+                [
+                    11.37542724609375,
+                    7.31414794921875
+                ],
+                [
+                    9.70367431640625,
+                    10.0653076171875
+                ],
+                [
+                    7.46795654296875,
+                    12.76190185546875
+                ],
+                [
+                    11.05206298828125,
+                    12.6868896484375
+                ]
+            ],
+            "shqs_score": 4.72,
+            "quality_factors": {
+                "S": 0.449,
+                "R": 0.105,
+                "F": 1.0,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "STRONG",
+            "weakest": "R",
+            "face_found": true,
+            "enhancement": "CodeFormer",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.1355,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 7,
+            "detector_score": 0.9777358770370483,
+            "box": [
+                621,
+                636,
+                642,
+                669
+            ],
+            "landmarks": [
+                [
+                    11.6484375,
+                    14.9564208984375
+                ],
+                [
+                    16.3936767578125,
+                    12.6854248046875
+                ],
+                [
+                    18.01318359375,
+                    19.14654541015625
+                ],
+                [
+                    14.66436767578125,
+                    25.813720703125
+                ],
+                [
+                    18.164794921875,
+                    24.37371826171875
+                ]
+            ],
+            "shqs_score": 1.45,
+            "quality_factors": {
+                "S": 1.0,
+                "R": 0.289,
+                "F": 0.05,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "STRONG",
+            "weakest": "F",
+            "face_found": false,
+            "enhancement": "CodeFormer",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.043,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        },
+        {
+            "face_id": 8,
+            "detector_score": 0.9523806571960449,
+            "box": [
+                131,
+                259,
+                176,
+                352
+            ],
+            "landmarks": [
+                [
+                    35.10755920410156,
+                    36.276824951171875
+                ],
+                [
+                    35.84922790527344,
+                    37.69354248046875
+                ],
+                [
+                    39.69532775878906,
+                    54.166595458984375
+                ],
+                [
+                    30.779312133789062,
+                    68.253173828125
+                ],
+                [
+                    31.1121826171875,
+                    69.24087524414062
+                ]
+            ],
+            "shqs_score": 3.16,
+            "quality_factors": {
+                "S": 0.687,
+                "R": 0.921,
+                "F": 0.05,
+                "N": 1.0,
+                "C": 1.0,
+                "L": 1.0
+            },
+            "level": "STRONG",
+            "weakest": "F",
+            "face_found": false,
+            "enhancement": "CodeFormer",
+            "status": "READY",
+            "recognition": {
+                "reference": "ss1.png",
+                "similarity": 0.1739,
+                "status": "NO MATCH",
+                "threshold": 0.5
+            }
+        }
+    ]
+}

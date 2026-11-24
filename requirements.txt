@@ -1,0 +1,11 @@
+# Core dependencies for the pipeline
+opencv-python>=4.8
+numpy>=1.24
+insightface>=0.7
+onnxruntime>=1.15
+retina-face>=0.0.17
+scipy>=1.10
+
+# Note: CodeFormer has its own venv with PyTorch + basicsr.
+# Install those in the CodeFormer folder separately.
+# See: stages/stage3b_codeformer.py for configuration.
