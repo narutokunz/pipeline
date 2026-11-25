@@ -62,6 +62,13 @@ GALLERY_DIR   = PIPELINE_ROOT / "Reference_Gallery"
 GALLERY_FILE  = PIPELINE_ROOT / "models" / "reference_embeddings.npz"
 MATCH_THRESHOLD = 0.5
 
+# =====================================================================================
+#  DEFAULT TEST PATHS (Change these anytime, or leave None to use command-line arguments)
+# =====================================================================================
+DEFAULT_INPUT_FOLDER = r"C:\Users\SSD\Desktop\TESTING\DBForMatching"
+DEFAULT_REFERENCE    = r"C:\Users\SSD\Desktop\TESTING\ref.jpeg"
+# =====================================================================================
+
 
 def _build_gallery():
     """Build the reference gallery from Reference_Gallery/ folder."""
@@ -305,6 +312,98 @@ def run_pipeline(image_path, reference_path=None, skip_codeformer=False):
         print(f"    Gallery folder: {GALLERY_DIR}")
 
     # ================================================================
+    #  STAGE 5: Ranking — Top 5 matches
+    # ================================================================
+    print("\n" + "=" * 60)
+    print("  STAGE 5: Ranking — Top 5 Matches")
+    print("=" * 60)
+
+    # Build ranking entries from face_data
+    ranking_entries = []
+    for fid in sorted(face_data.keys()):
+        fd = face_data[fid]
+        rec = fd.get("recognition", {})
+        sim = rec.get("similarity")
+        if sim is None:
+            continue  # skip faces where embedding failed
+
+        # Determine enhancement status
+        enhancement = fd.get("enhancement", "none")
+        if enhancement in ("none", "none (CodeFormer skipped)", "none (CodeFormer failed)"):
+            enhanced_label = "Not Enhanced"
+        elif enhancement == "CLAHE":
+            enhanced_label = "Enhanced (CLAHE)"
+        elif enhancement == "CodeFormer":
+            enhanced_label = "Enhanced (CodeFormer)"
+        else:
+            enhanced_label = f"Enhanced ({enhancement})"
+
+        status = rec.get("status", "NO MATCH")
+        matched_label = "MATCHED ✓" if status == "MATCH" else "NOT MATCHED"
+
+        ranking_entries.append({
+            "face_id": fid,
+            "name": f"face_{fid}.png",
+            "similarity": sim,
+            "shqs_score": fd.get("shqs_score", 0),
+            "level": fd.get("level", "?"),
+            "matched": matched_label,
+            "enhanced": enhanced_label,
+        })
+
+    # Sort by similarity descending (primary), SHQS descending (secondary)
+    ranking_entries.sort(key=lambda e: (e["similarity"], e["shqs_score"]), reverse=True)
+
+    top5 = ranking_entries[:5]
+
+    # Print ranking table
+    print(f"\n  {'Rank':<6}{'Face':<16}{'Similarity':<13}{'SHQS':<8}"
+          f"{'Status':<16}{'Enhancement'}")
+    print("  " + "-" * 75)
+    ranking_lines = []
+    for rank, entry in enumerate(top5, start=1):
+        line = (f"  {f'#{rank}':<6}{entry['name']:<16}{entry['similarity']:<13.4f}"
+                f"{entry['shqs_score']:<8.1f}{entry['matched']:<16}{entry['enhanced']}")
+        print(line)
+        ranking_lines.append(line)
+
+    if not top5:
+        print("  No faces with valid embeddings to rank.")
+
+    # Save ranking to text file
+    ranking_path = output / "ranking.txt"
+    with open(ranking_path, "w", encoding="utf-8") as f:
+        f.write(f"STAGE 5: Ranking — Top 5 Matches\n")
+        f.write(f"Input Image: {image_path.name}\n")
+        if reference_path:
+            f.write(f"Reference: {Path(reference_path).name}\n")
+        f.write(f"Match Threshold: {MATCH_THRESHOLD}\n")
+        f.write(f"\n{'Rank':<6}{'Face':<16}{'Similarity':<13}{'SHQS':<8}"
+                f"{'Status':<16}{'Enhancement'}\n")
+        f.write("-" * 75 + "\n")
+        for rank, entry in enumerate(top5, start=1):
+            f.write(f"{f'#{rank}':<6}{entry['name']:<16}{entry['similarity']:<13.4f}"
+                    f"{entry['shqs_score']:<8.1f}{entry['matched']:<16}"
+                    f"{entry['enhanced']}\n")
+        f.write(f"\nTotal faces ranked: {len(ranking_entries)}\n")
+        f.write(f"Faces shown: top {len(top5)}\n")
+
+    print(f"\n  Ranking saved to: {ranking_path}")
+
+    # Add ranking to report
+    report_ranking = []
+    for rank, entry in enumerate(top5, start=1):
+        report_ranking.append({
+            "rank": rank,
+            "face": entry["name"],
+            "similarity": entry["similarity"],
+            "shqs_score": entry["shqs_score"],
+            "quality_level": entry["level"],
+            "status": entry["matched"],
+            "enhancement": entry["enhanced"],
+        })
+
+    # ================================================================
     #  REPORT
     # ================================================================
     report = {
@@ -404,6 +503,14 @@ def main():
         return
 
     if not args.input_image:
+        if DEFAULT_INPUT_FOLDER and Path(DEFAULT_INPUT_FOLDER).exists():
+            print(f"Using default input path: {DEFAULT_INPUT_FOLDER}")
+            ref = args.reference or (DEFAULT_REFERENCE if DEFAULT_REFERENCE and Path(DEFAULT_REFERENCE).exists() else None)
+            if ref:
+                print(f"Using reference: {ref}")
+            run_on_input(DEFAULT_INPUT_FOLDER, ref, args.skip_codeformer)
+            return
+
         parser.print_help()
         print("\nExamples:")
         print("  python run_pipeline.py crowd_photo.jpg --reference known_face.jpg")

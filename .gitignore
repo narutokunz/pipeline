@@ -12,8 +12,14 @@ _codeformer_tmp/
 
 # Generated outputs
 models/pipeline_output/
+pipeline_output/
 
 # Model weights (if large)
 *.pth
 *.pt
 *.onnx
+
+# Node dependencies
+node_modules/
+web/frontend/node_modules/
+web/frontend/dist/
