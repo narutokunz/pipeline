@@ -26,8 +26,8 @@ import numpy as np
 warnings.filterwarnings("ignore")
 
 # ---- thresholds ----
-SOFT_THR   = 75.0
-STRONG_THR = 35.0
+SOFT_THR   = 50.0
+STRONG_THR = 10.0
 
 # ---- membership ramps: (bad, good) ----
 RAMPS = {

@@ -23,3 +23,6 @@ pipeline_output/
 node_modules/
 web/frontend/node_modules/
 web/frontend/dist/
+
+web/_uploads/
+web/_output/

@@ -613,58 +613,6 @@ export default function FaceRecognition() {
             </div>
           )}
 
-          {/* Research Results Summary Table (Matches user's reference format) */}
-          <div className="bg-white rounded-xl p-6 border border-[#d7dadc] shadow-sm space-y-4">
-            <div className="border-b border-[#ebeeef] pb-3">
-              <h3 className="text-2xl font-bold text-[#1a1c20]">Face Recognition Results Table</h3>
-              <p className="text-base text-[#545c65] mt-0.5">
-                Summary of detected crops, quality scoring, selective decision, and cosine similarity ranking.
-              </p>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-[#d7dadc] text-left text-base">
-                <thead>
-                  <tr className="bg-[#f6f7f8] text-[#1a1c20] font-bold">
-                    <th className="py-3 px-4">Rank</th>
-                    <th className="py-3 px-4">Crop (Face ID)</th>
-                    <th className="py-3 px-4">SHQS</th>
-                    <th className="py-3 px-4">Decision</th>
-                    <th className="py-3 px-4">Cosine sim.</th>
-                    <th className="py-3 px-4">Result</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#ebeeef] bg-white">
-                  {rankedFaces.map((f) => (
-                    <tr key={f.face_id} className="hover:bg-[#fbfcfd]">
-                      <td className="py-3 px-4 font-bold text-[#1a1c20]">
-                        #{f.rank}
-                      </td>
-                      <td className="py-3 px-4 text-[#1a1c20]">
-                        Face #{f.face_id}
-                      </td>
-                      <td className="py-3 px-4 text-[#1a1c20]">
-                        {f.shqs_score !== undefined ? (f.shqs_score / 100).toFixed(2) : '—'}
-                      </td>
-                      <td className="py-3 px-4 text-[#424850] capitalize">
-                        {formatDecision(f.enhancement_method)}
-                      </td>
-                      <td className="py-3 px-4 font-bold text-[#1a1c20]">
-                        {f.similarity_score !== null ? f.similarity_score.toFixed(3) : '—'}
-                      </td>
-                      <td className="py-3 px-4">
-                        {f.match_status === 'MATCH' ? (
-                          <span className="font-bold text-[#215c5a]">Matched</span>
-                        ) : (
-                          <span className="text-[#8b949d]">&mdash;</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
 
           {/* Annotated Crowd Photograph */}
           <div className="bg-white rounded-xl p-6 border border-[#d7dadc] shadow-sm space-y-4">
