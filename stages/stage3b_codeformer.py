@@ -147,17 +147,18 @@ def enhance_strong_faces(faces):
         "--face_upsample",
     ]
 
+    # Run CodeFormer inference as a subprocess if the root directory exists
+    if not CODEFORMER_ROOT.exists():
+        print(f"  [CodeFormer] NOTICE: CodeFormer repository not found at {CODEFORMER_ROOT}.")
+        print("  Skipping CodeFormer restoration (original crops will be retained).")
+        shutil.rmtree(tmp, ignore_errors=True)
+        return {fid: None for fid, _ in faces}
+
     try:
         subprocess.run(cmd, cwd=str(CODEFORMER_ROOT), check=True,
                        capture_output=True, text=True)
-    except subprocess.CalledProcessError as e:
-        print(f"  [CodeFormer] ERROR: {e.stderr[:500] if e.stderr else e}")
-        # Return None for all faces
-        shutil.rmtree(tmp, ignore_errors=True)
-        return {fid: None for fid, _ in faces}
-    except FileNotFoundError:
-        print(f"  [CodeFormer] ERROR: Python not found at {CODEFORMER_PYTHON}")
-        print(f"  Set CODEFORMER_PYTHON env var or check CODEFORMER_ROOT={CODEFORMER_ROOT}")
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError) as e:
+        print(f"  [CodeFormer] Warning/Error during inference: {e}")
         shutil.rmtree(tmp, ignore_errors=True)
         return {fid: None for fid, _ in faces}
 
